@@ -32,7 +32,7 @@ const UserAccounNav: FC<UserAccounNavProps> = ({ user }) => {
           <Link href={`/feed`}>Feed</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href={`/u/create`}>Create Community</Link>
+          <Link href={`/r/create`}>Create Community</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href={`/settings`}>Settings</Link>

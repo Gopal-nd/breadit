@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar'
+import Providers from '@/components/Proviers'
 import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
@@ -19,6 +20,8 @@ export default function RootLayout({
   return (
     <html lang='en' className={cn('antialiased bg-white text-slate-900 font-light',inter.className)}>
       <body className='min-h-scren pt-12 bg-slate-50 antialiased' >
+      <Providers>
+
         {/* @ts-expect-error Server Component */}
         <Navbar />
         {authModal}
@@ -26,6 +29,7 @@ export default function RootLayout({
           {children}
           </div>
           <Toaster  />
+      </Providers>
           </body>
     </html>
   )

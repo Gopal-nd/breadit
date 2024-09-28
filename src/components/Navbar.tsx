@@ -16,6 +16,7 @@ const Navbar = async () => {
           <p className="hidden text-zinx-700 text-lg font-medium md:flex">
             Breadit
           </p>
+        
         </Link>
 
         {/* SearchBar  */}
