@@ -23,7 +23,7 @@ const UserAuthForm: FC<UserAuthFormProps> = ({className,...props}) => {
             }, 2000)
         })
         try {
-            throw new Error()
+            
             await signIn("google")
         } catch (error) {
             toast({
@@ -48,3 +48,6 @@ const UserAuthForm: FC<UserAuthFormProps> = ({className,...props}) => {
 }
 
 export default UserAuthForm
+
+
+
