@@ -3,6 +3,7 @@ import { db } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import React from 'react'
 import { format } from 'date-fns'
+import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle'
 const layout = async({children,params:{slug}}:{children:React.ReactNode,params:{slug:string} }) => {
 
     const session = await  getAuthSession()
@@ -80,6 +81,12 @@ const layout = async({children,params:{slug}}:{children:React.ReactNode,params:{
                         {subreddit.creatorId=== session?.user.id && <div className='flex justify-between gap-x-4 py-3'>
                         <p className='text-zinc-700'>You Created This Community</p>
                         
+                        </div>
+                        }
+
+                        {subreddit.creatorId!== session?.user.id && <div className='flex justify-between gap-x-4 py-3'>
+                        
+                        <><SubscribeLeaveToggle subredditId={subreddit.id} subredditName={slug} isSubscribe={isSubscribed}/></>
                         </div>
                         }
                     </dl>
