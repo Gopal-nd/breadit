@@ -2,7 +2,7 @@
 
 import { useOnClickOutside } from '@/hooks/use-on-click-outside'
 import { formatTimeToNow } from '@/lib/utils'
-import { CommentRequest } from '@/lib/validators/comment'
+
 import { Comment, CommentVote, User } from '@prisma/client'
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
@@ -10,12 +10,15 @@ import { MessageSquare } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { FC, useRef, useState } from 'react'
 import CommentVotes from '../CommentVotes'
-import { UserAvatar } from '../UserAvatar'
+
 import { Button } from '../ui/Button'
-import { Label } from '../ui/Label'
-import { Textarea } from '../ui/Textarea'
+
 import { toast } from '../../hooks/use-toast'
 import { useSession } from 'next-auth/react'
+import { CommentRequest } from '@/lib/validators/comment'
+import { UserAvatar } from '../UserAvatar'
+
+
 
 type ExtendedComment = Comment & {
   votes: CommentVote[]
@@ -110,9 +113,23 @@ const PostComment: FC<PostCommentProps> = ({
 
       {isReplying ? (
         <div className='grid w-full gap-1.5'>
-          <Label htmlFor='comment'>Your comment</Label>
+          <label htmlFor='comment'         className="block text-lg font-medium text-gray-700 mb-2">Your comment</label>
           <div className='mt-2'>
-            <Textarea
+            <textarea
+            className="
+            block 
+            w-full 
+            p-3 
+            border 
+            border-gray-300 
+            rounded-lg 
+            shadow-sm 
+            focus:ring-indigo-500 
+            focus:border-indigo-500 
+            sm:text-sm 
+            resize-none
+            text-gray-900
+          "
               onFocus={(e) =>
                 e.currentTarget.setSelectionRange(
                   e.currentTarget.value.length,
@@ -123,7 +140,7 @@ const PostComment: FC<PostCommentProps> = ({
               id='comment'
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              rows={1}
+              rows={2}
               placeholder='What are your thoughts?'
             />
 

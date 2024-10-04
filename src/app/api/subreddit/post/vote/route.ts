@@ -62,18 +62,7 @@ export async function PATCH(req: Request) {
           return acc
         }, 0)
 
-        if (votesAmt >= CACHE_AFTER_UPVOTES) {
-          const cachePayload: CachedPost = {
-            authorUsername: post.author.username ?? '',
-            content: JSON.stringify(post.content),
-            id: post.id,
-            title: post.title,
-            currentVote: null,
-            createdAt: post.createdAt,
-          }
-
-          await redis.hset(`post:${postId}`, cachePayload) // Store the post data as a hash
-        }
+       
 
         return new Response('OK')
       }
@@ -97,18 +86,6 @@ export async function PATCH(req: Request) {
         return acc
       }, 0)
 
-      if (votesAmt >= CACHE_AFTER_UPVOTES) {
-        const cachePayload: CachedPost = {
-          authorUsername: post.author.username ?? '',
-          content: JSON.stringify(post.content),
-          id: post.id,
-          title: post.title,
-          currentVote: voteType,
-          createdAt: post.createdAt,
-        }
-
-        await redis.hset(`post:${postId}`, cachePayload) // Store the post data as a hash
-      }
 
       return new Response('OK')
     }
@@ -129,19 +106,7 @@ export async function PATCH(req: Request) {
       return acc
     }, 0)
 
-    if (votesAmt >= CACHE_AFTER_UPVOTES) {
-      const cachePayload: CachedPost = {
-        authorUsername: post.author.username ?? '',
-        content: JSON.stringify(post.content),
-        id: post.id,
-        title: post.title,
-        currentVote: voteType,
-        createdAt: post.createdAt,
-      }
-
-      await redis.hset(`post:${postId}`, cachePayload) // Store the post data as a hash
-    }
-
+   
     return new Response('OK')
   } catch (error) {
     (error)
